@@ -556,8 +556,8 @@ footer {
 
     .deck-callout {
         position: absolute;
-        left: 72%;
-        bottom: 48%;
+        left: 77%;
+        bottom: 39%;
         width: auto;
         font-size: clamp(1.05rem, 5.2vw, 1.65rem);
         text-align: center;
@@ -571,4 +571,3 @@ footer {
         height: 28%;
         pointer-events: auto;
     }
-
