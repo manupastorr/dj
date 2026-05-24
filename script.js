@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('press-to-dj');
     const djConsole = document.getElementById('dj-console');
-    const feedback = document.getElementById('game-feedback');
+    const diplomaModal = document.getElementById('diploma-modal');
     const stopBtn = document.getElementById('stop-dj');
     const okBtn = document.getElementById('ok-dj-now');
     const statusMsg = document.querySelector('.status-msg');
-    
+
     let audioCtx;
     let isPlaying = false;
     let beatInterval;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopGame() {
         clearInterval(beatInterval);
         if (audioCtx) audioCtx.close();
-        
+
         isPlaying = false;
         document.body.classList.remove('party-mode');
         document.querySelector('.cursed-container').classList.remove('game-active');
@@ -30,18 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
         stopBtn.classList.add('hidden');
         startBtn.classList.remove('hidden');
         djConsole.classList.add('hidden');
-        feedback.classList.add('hidden');
+        diplomaModal.classList.add('hidden');
         audioCtx = null;
     }
 
     function createSillyBeat() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
+    ...
+    djConsole.addEventListener('click', (e) => {
+        if (!isPlaying) return;
 
-        let step = 0;
-        beatInterval = setInterval(() => {
-            const time = audioCtx.currentTime;
+        diplomaModal.classList.remove('hidden');
+        triggerConfetti();
+    ...
             
             // Stupid Kick
             const kick = audioCtx.createOscillator();

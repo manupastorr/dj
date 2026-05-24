@@ -242,36 +242,54 @@ header {
     cursor: pointer;
 }
 
-#game-feedback {
-    margin-top: 15px;
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
     background: white;
     color: black;
-    padding: 10px;
-    border: 3px solid var(--neon-red);
-    box-shadow: 5px 5px 0px black;
+    padding: 1rem;
+    border: 5px solid var(--neon-red);
+    box-shadow: 10px 10px 0px var(--neon-magenta);
+    max-width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .congrats {
     font-family: var(--font-impact);
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
     color: var(--neon-red);
-    margin-bottom: 2px;
+    text-align: center;
 }
 
 .status-msg {
     font-family: var(--font-hand);
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .diploma-container {
     width: 100%;
-    border: 2px solid black;
-    background: #000;
+    border: 3px solid black;
+    line-height: 0;
 }
 
 .diploma-img {
@@ -284,7 +302,8 @@ header {
     background: var(--neon-cyan);
     color: black;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
 }
 
 #stop-dj {
