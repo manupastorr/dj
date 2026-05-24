@@ -276,7 +276,6 @@ header {
     to { transform: rotate(5deg) scale(1.1); }
 }
 
-#game-feedback {
 /* Intense Party Elements */
 .strobe-overlay {
     position: fixed;
