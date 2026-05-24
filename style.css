@@ -165,7 +165,7 @@ header {
     pointer-events: none;
     color: var(--neon-green);
     font-family: var(--font-impact);
-    font-size: clamp(6rem, 11vw, 8.5rem);
+    font-size: clamp(3.5rem, 7vw, 5rem);
     line-height: 0.7;
     transform: rotate(-8deg) skew(-3deg);
     -webkit-text-stroke: 8px black;
@@ -182,7 +182,7 @@ header {
     top: 42%;
     color: var(--neon-cyan);
     font-family: var(--font-hand);
-    font-size: clamp(1.8rem, 4.8vw, 3.2rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
     line-height: 0.74;
     text-transform: uppercase;
     transform: rotate(6deg);
@@ -577,7 +577,7 @@ footer {
         right: -8px;
         top: 37%;
         width: 150px;
-        font-size: clamp(1.35rem, 7vw, 2.3rem);
+        font-size: clamp(1rem, 5vw, 1.6rem);
         text-align: left;
     }
 
@@ -592,6 +592,6 @@ footer {
     .arrow-diy {
         left: 75%;
         top: 60%;
-        font-size: clamp(5rem, 20vw, 7rem);
+        font-size: clamp(3rem, 12vw, 4.2rem);
     }
 }
