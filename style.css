@@ -146,7 +146,7 @@ header {
 
 .arrow-diy {
     position: absolute;
-    left: 78%;
+    left: 83%;
     top: 61%;
     z-index: 3;
     pointer-events: none;
@@ -564,7 +564,7 @@ footer {
     }
 
     .arrow-diy {
-        left: 68%;
+        left: 75%;
         top: 60%;
         font-size: clamp(5rem, 20vw, 7rem);
     }
