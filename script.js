@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let audioCtx;
     let isPlaying = false;
     let beatInterval;
+    let confettiInterval;
 
     const sillyMessages = [
         "beat matched emotionally",
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stopGame() {
         if (beatInterval) clearInterval(beatInterval);
+        if (confettiInterval) clearInterval(confettiInterval);
         if (audioCtx) audioCtx.close();
 
         isPlaying = false;
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         djConsole.classList.add('hidden');
         diplomaModal.classList.add('hidden');
         audioCtx = null;
+        confettiInterval = null;
     }
 
     function createSillyBeat() {
@@ -77,42 +80,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
-    function triggerConfetti() {
-        // CHAOTIC GRAVITY CONFETTI (180 pieces)
-        for (let i = 0; i < 180; i++) {
-            const confetti = document.createElement('div');
-            confetti.style.position = 'fixed';
-            confetti.style.width = Math.random() * 18 + 5 + 'px';
-            confetti.style.height = Math.random() * 12 + 5 + 'px';
-            confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
-            
-            // Random start primarily from top, some from upper sides
-            const startX = Math.random() * 120 - 10 + 'vw';
-            const startY = Math.random() * -50 - 20 + 'px';
-            
-            // Random drift and messy end
-            const endX = (parseFloat(startX) + (Math.random() * 40 - 20)) + 'vw';
-            const endY = '110vh';
+    function triggerSingleConfetti() {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = Math.random() * 18 + 5 + 'px';
+        confetti.style.height = Math.random() * 12 + 5 + 'px';
+        confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
+        
+        const startX = Math.random() * 120 - 10 + 'vw';
+        const startY = Math.random() * -50 - 20 + 'px';
+        const endX = (parseFloat(startX) + (Math.random() * 40 - 20)) + 'vw';
+        const endY = '110vh';
 
-            confetti.style.left = startX;
-            confetti.style.top = startY;
-            confetti.style.zIndex = '2000';
-            document.body.appendChild(confetti);
+        confetti.style.left = startX;
+        confetti.style.top = startY;
+        confetti.style.zIndex = '2000';
+        document.body.appendChild(confetti);
 
-            const animation = confetti.animate([
-                { top: startY, left: startX, transform: `rotate(0deg) skew(0deg)` },
-                { 
-                    top: '50vh', 
-                    left: (parseFloat(startX) + (Math.random() * 20 - 10)) + 'vw', 
-                    transform: `rotate(${Math.random() * 500}deg) skew(${Math.random() * 20}deg)` 
-                },
-                { top: endY, left: endX, transform: `rotate(${Math.random() * 1500}deg) skew(0deg)` }
-            ], {
-                duration: 1500 + Math.random() * 3000,
-                easing: 'ease-in'
-            });
+        const animation = confetti.animate([
+            { top: startY, left: startX, transform: `rotate(0deg) skew(0deg)` },
+            { 
+                top: '50vh', 
+                left: (parseFloat(startX) + (Math.random() * 20 - 10)) + 'vw', 
+                transform: `rotate(${Math.random() * 500}deg) skew(${Math.random() * 20}deg)` 
+            },
+            { top: endY, left: endX, transform: `rotate(${Math.random() * 1500}deg) skew(0deg)` }
+        ], {
+            duration: 1500 + Math.random() * 3000,
+            easing: 'ease-in'
+        });
 
-            animation.onfinish = () => confetti.remove();
+        animation.onfinish = () => confetti.remove();
+    }
+
+    function triggerConfetti(count = 180) {
+        for (let i = 0; i < count; i++) {
+            triggerSingleConfetti();
         }
     }
 
@@ -136,7 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
         diplomaModal.classList.remove('hidden');
         if (strobe) strobe.classList.remove('hidden');
         if (reflectors) reflectors.classList.remove('hidden');
-        triggerConfetti();
+        
+        // Initial burst
+        triggerConfetti(150);
+        
+        // Start continuous loop if not already running
+        if (!confettiInterval) {
+            confettiInterval = setInterval(() => {
+                triggerConfetti(20);
+            }, 400);
+        }
         
         statusMsg.innerText = sillyMessages[Math.floor(Math.random() * sillyMessages.length)];
         
