@@ -157,6 +157,12 @@ header {
     transform: rotate(-8deg) skew(-3deg);
     -webkit-text-stroke: 8px black;
     text-shadow: 9px 7px 0 black;
+    animation: neon-flash 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes neon-flash {
+    from { opacity: 0.6; text-shadow: 9px 7px 0 black, 0 0 12px var(--neon-green); }
+    to { opacity: 1; text-shadow: 9px 7px 0 black, 0 0 28px var(--neon-green), 0 0 42px var(--neon-green); }
 }
 
 .arrow-diy::before {
