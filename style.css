@@ -242,6 +242,55 @@ header {
     cursor: pointer;
 }
 
+/* Intense Party Elements */
+.strobe-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    pointer-events: none;
+    mix-blend-mode: color-dodge;
+    animation: strobe-party 0.1s infinite;
+}
+
+.reflectors {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.reflector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2000px;
+    height: 100px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform-origin: left center;
+    filter: blur(10px);
+}
+
+.r-1 { transform: rotate(0deg) translate(0, -50%); animation: rotate-ref 4s infinite linear; background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent); }
+.r-2 { transform: rotate(90deg) translate(0, -50%); animation: rotate-ref 4s infinite linear reverse; background: linear-gradient(90deg, transparent, var(--neon-magenta), transparent); }
+.r-3 { transform: rotate(180deg) translate(0, -50%); animation: rotate-ref 3s infinite linear; background: linear-gradient(90deg, transparent, var(--neon-green), transparent); }
+.r-4 { transform: rotate(270deg) translate(0, -50%); animation: rotate-ref 5s infinite linear reverse; background: linear-gradient(90deg, transparent, var(--neon-red), transparent); }
+
+@keyframes rotate-ref { from { transform: rotate(0deg) translate(0, -50%); } to { transform: rotate(360deg) translate(0, -50%); } }
+
+@keyframes strobe-party {
+    0% { background: rgba(255,0,0,0.1); }
+    33% { background: rgba(0,255,0,0.1); }
+    66% { background: rgba(0,0,255,0.1); }
+    100% { background: rgba(255,255,255,0.1); }
+}
+
 /* Modal Styles */
 .modal-overlay {
     position: fixed;

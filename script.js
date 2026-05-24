@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('press-to-dj');
     const djConsole = document.getElementById('dj-console');
     const diplomaModal = document.getElementById('diploma-modal');
+    const strobe = document.querySelector('.strobe-overlay');
+    const reflectors = document.querySelector('.reflectors');
     const stopBtn = document.getElementById('stop-dj');
     const okBtn = document.getElementById('ok-dj-now');
     const statusMsg = document.querySelector('.status-msg');
@@ -20,11 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     function stopGame() {
-        clearInterval(beatInterval);
+        if (beatInterval) clearInterval(beatInterval);
         if (audioCtx) audioCtx.close();
 
         isPlaying = false;
         document.body.classList.remove('party-mode');
+        if (strobe) strobe.classList.add('hidden');
+        if (reflectors) reflectors.classList.add('hidden');
         document.querySelector('.cursed-container').classList.remove('game-active');
         document.querySelectorAll('.deck').forEach(d => d.classList.remove('spinning'));
         stopBtn.classList.add('hidden');
@@ -35,13 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createSillyBeat() {
-    ...
-    djConsole.addEventListener('click', (e) => {
-        if (!isPlaying) return;
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
 
-        diplomaModal.classList.remove('hidden');
-        triggerConfetti();
-    ...
+        let step = 0;
+        beatInterval = setInterval(() => {
+            const time = audioCtx.currentTime;
             
             // Stupid Kick
             const kick = audioCtx.createOscillator();
@@ -70,19 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             step = (step + 1) % 4;
-        }, 500); // 120 BPM roughly
+        }, 500);
     }
 
     function triggerConfetti() {
-        for (let i = 0; i < 20; i++) {
+        // MORE CONFETTI (100 pieces)
+        for (let i = 0; i < 100; i++) {
             const confetti = document.createElement('div');
             confetti.style.position = 'fixed';
-            confetti.style.width = '10px';
-            confetti.style.height = '10px';
-            confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff'][Math.floor(Math.random() * 4)];
+            confetti.style.width = '12px';
+            confetti.style.height = '12px';
+            confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
             confetti.style.left = Math.random() * 100 + 'vw';
             confetti.style.top = '-10px';
-            confetti.style.zIndex = '9999';
+            confetti.style.zIndex = '2000';
             confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
             document.body.appendChild(confetti);
 
@@ -90,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { top: '-10px', transform: `rotate(0deg) translateX(0)` },
                 { top: '100vh', transform: `rotate(${Math.random() * 1000}deg) translateX(${Math.random() * 100 - 50}px)` }
             ], {
-                duration: 2000 + Math.random() * 3000,
+                duration: 1500 + Math.random() * 2500,
                 easing: 'cubic-bezier(0, .9, .57, 1)'
             });
 
@@ -108,24 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.cursed-container').classList.add('game-active');
         
         createSillyBeat();
-        
-        // Add "party mode" to body
         document.body.classList.add('party-mode');
-        
-        // Start spinning decks
         document.querySelectorAll('.deck').forEach(d => d.classList.add('spinning'));
     });
 
     djConsole.addEventListener('click', (e) => {
         if (!isPlaying) return;
         
-        feedback.classList.remove('hidden');
+        diplomaModal.classList.remove('hidden');
+        if (strobe) strobe.classList.remove('hidden');
+        if (reflectors) reflectors.classList.remove('hidden');
         triggerConfetti();
         
-        // Random message
         statusMsg.innerText = sillyMessages[Math.floor(Math.random() * sillyMessages.length)];
         
-        // Airhorn sound if they hit the FX button
         if (e.target.classList.contains('fx-btn')) {
             const osc = audioCtx.createOscillator();
             const g = audioCtx.createGain();
