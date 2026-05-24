@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         createSillyBeat();
         document.body.classList.add('party-mode');
+        if (reflectors) reflectors.classList.remove('hidden');
         document.querySelectorAll('.deck').forEach(d => d.classList.add('spinning'));
     });
 
