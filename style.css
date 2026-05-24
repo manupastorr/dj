@@ -574,10 +574,10 @@ footer {
 
     .deck-callout {
         position: absolute;
-        right: -45px;
-        top: 62%;
-        width: 135px;
-        font-size: clamp(1.15rem, 5.8vw, 1.9rem);
+        right: -65px;
+        top: 68%;
+        width: 145px;
+        font-size: clamp(1.2rem, 6vw, 2rem);
         text-align: left;
         transform: rotate(0deg);
     }
@@ -591,9 +591,10 @@ footer {
     }
 
     .arrow-diy {
-        left: 78%;
-        top: 64%;
+        left: 85%;
+        top: 70%;
         font-size: clamp(2.8rem, 11vw, 3.8rem);
         transform: rotate(-20deg) skew(-3deg);
+        -webkit-text-stroke: 3px black;
     }
 }
