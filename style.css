@@ -343,31 +343,49 @@ header {
 .modal-content {
     background: white;
     color: black;
-    padding: 1rem;
-    border: 5px solid var(--neon-red);
-    box-shadow: 10px 10px 0px var(--neon-magenta);
+    padding: 1.5rem;
+    /* Thick rainbow neon border */
+    border: 10px solid var(--neon-red);
+    box-shadow: 
+        0 0 20px var(--neon-red),
+        0 0 40px var(--neon-green),
+        0 0 60px var(--neon-magenta),
+        15px 15px 0px black;
     max-width: 500px;
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     max-height: 90vh;
     overflow-y: auto;
-    animation: cursed-pulse 0.8s infinite ease-in-out;
+    animation: 
+        cursed-pulse 0.8s infinite ease-in-out,
+        rainbow-border 2s infinite linear;
 }
 
-@keyframes cursed-pulse {
-    0% { transform: scale(0.95) rotate(-1deg); }
-    50% { transform: scale(1.05) rotate(1deg); }
-    100% { transform: scale(0.95) rotate(-1deg); }
+@keyframes rainbow-border {
+    0% { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red), 15px 15px 0px black; }
+    25% { border-color: var(--neon-green); box-shadow: 0 0 30px var(--neon-green), 15px 15px 0px black; }
+    50% { border-color: var(--neon-cyan); box-shadow: 0 0 30px var(--neon-cyan), 15px 15px 0px black; }
+    75% { border-color: var(--neon-magenta); box-shadow: 0 0 30px var(--neon-magenta), 15px 15px 0px black; }
+    100% { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red), 15px 15px 0px black; }
 }
 
 .congrats {
     font-family: var(--font-impact);
-    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
     color: var(--neon-red);
     text-align: center;
+    text-transform: uppercase;
+    animation: flash-text 0.2s infinite;
+    -webkit-text-stroke: 2px black;
+}
+
+@keyframes flash-text {
+    0% { color: var(--neon-red); transform: scale(1); }
+    50% { color: var(--neon-green); transform: scale(1.1); }
+    100% { color: var(--neon-magenta); transform: scale(1); }
 }
 
 .status-msg {
