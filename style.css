@@ -1,9 +1,13 @@
 :root {
-    --bg-color: #0a0a0a;
-    --text-color: #f5f5f5;
-    --accent-color: #ff7e5f;
-    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --spacing-inner: 1.5rem;
+    --neon-red: #ff0000;
+    --neon-green: #39ff14;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --bg-black: #050505;
+    --text-white: #ffffff;
+    --font-meme: 'Comic Neue', cursive;
+    --font-impact: 'Rubik Mono One', sans-serif;
+    --font-hand: 'Permanent Marker', cursive;
 }
 
 * {
@@ -12,132 +16,179 @@
     padding: 0;
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-main);
-    line-height: 1.4;
+body.cursed-body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--font-meme);
+    overflow: hidden;
+    height: 100vh;
+    height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    height: 100svh; /* Smallest Viewport Height for mobile */
-    overflow: hidden; /* Prevent scrolling */
-    text-align: center;
+    position: relative;
 }
 
-.container {
-    max-width: 600px;
-    padding: var(--spacing-inner);
+/* MS Paint blobs */
+.neon-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; /* Evenly distribute content vertically */
-    align-items: center;
-}
-
-header {
-    flex-shrink: 0;
-}
-
-.artist-name {
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-}
-
-.subtitle {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
-    color: var(--accent-color);
-    margin-bottom: 0.1rem;
-}
-
-.location {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.meme-container {
-    flex-shrink: 1;
-    min-height: 0; /* Important for flex shrink */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile-image {
-    max-width: 100%;
-    max-height: 35vh; /* Keep image size in check */
-    width: auto;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-    margin-bottom: 0.5rem;
-}
-
-figcaption {
-    font-style: italic;
-    opacity: 0.8;
-    font-size: 0.85rem;
-}
-
-.links {
-    width: 100%;
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    flex-shrink: 0;
-}
-
-.btn {
-    display: block;
-    padding: 0.8rem 1.5rem;
-    border: 1px solid var(--text-color);
-    border-radius: 50px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    transform: translateY(-2px);
-}
-
-.btn.soundcloud:hover {
-    border-color: #ff5500;
-    background-color: #ff5500;
-    color: white;
-}
-
-.btn.instagram:hover {
-    border-color: #e4405f;
-    background-color: #e4405f;
-    color: white;
-}
-
-footer {
-    flex-shrink: 0;
-}
-
-.footer-text {
-    font-size: 0.7rem;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 10% 20%, var(--neon-magenta) 0%, transparent 20%),
+        radial-gradient(circle at 80% 10%, var(--neon-green) 0%, transparent 15%),
+        radial-gradient(circle at 50% 90%, var(--neon-cyan) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, var(--neon-red) 0%, transparent 15%);
+    filter: blur(40px);
     opacity: 0.4;
 }
 
-@media (max-height: 600px) {
-    .artist-name { font-size: 2rem; }
-    .profile-image { max-height: 25vh; }
-    .links { gap: 0.5rem; }
+.cursed-container {
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    transform: rotate(-2deg);
+}
+
+.artist-name {
+    font-family: var(--font-impact);
+    font-size: clamp(2rem, 10vw, 3rem);
+    color: var(--text-white);
+    text-shadow: 4px 4px 0px var(--neon-red), -2px -2px 0px var(--neon-cyan);
+    line-height: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle-wrap {
+    background: var(--neon-green);
+    padding: 5px 10px;
+    transform: rotate(1deg);
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px black;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: black;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: lowercase;
+}
+
+.location {
+    font-family: var(--font-hand);
+    font-size: 0.9rem;
+    color: var(--neon-cyan);
+    text-shadow: 2px 2px 0px black;
+}
+
+.meme-stage {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 5px solid white;
+    background: black;
+    box-shadow: 10px 10px 0px var(--neon-magenta);
+}
+
+.main-meme {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: contrast(1.1) brightness(1.1);
+}
+
+.arrow-diy {
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    font-size: 3rem;
+    color: var(--neon-green);
+    font-family: var(--font-hand);
+    transform: rotate(140deg);
+}
+
+.cursed-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.cursed-btn {
+    text-decoration: none;
+    font-family: var(--font-impact);
+    font-size: 1.2rem;
+    padding: 12px;
+    text-align: center;
+    border: 4px solid black;
+    box-shadow: 6px 6px 0px black;
+    transition: all 0.1s;
+    position: relative;
+}
+
+.cursed-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px black;
+}
+
+.cursed-btn.sc { background: var(--neon-red); color: white; transform: rotate(-1deg); }
+.cursed-btn.ig { background: var(--neon-magenta); color: white; transform: rotate(1deg); }
+.cursed-btn.mail { background: var(--neon-cyan); color: black; transform: rotate(-0.5deg); }
+
+.cursed-btn:hover {
+    filter: brightness(1.2) saturate(1.5);
+    z-index: 2;
+}
+
+footer {
+    width: 100%;
+}
+
+.footer-text {
+    font-family: var(--font-hand);
+    color: var(--neon-green);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.loading-bar {
+    width: 100px;
+    height: 15px;
+    border: 2px solid white;
+    margin: 0 auto;
+    background: black;
+}
+
+.loading-fill {
+    width: 40%;
+    height: 100%;
+    background: var(--neon-red);
+    animation: loading 2s infinite linear;
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    50% { width: 80%; }
+    100% { width: 0%; }
+}
+
+@media (max-height: 700px) {
+    .artist-name { font-size: 1.8rem; }
+    .meme-stage { max-width: 280px; }
+    .cursed-btn { padding: 8px; font-size: 1rem; }
 }
