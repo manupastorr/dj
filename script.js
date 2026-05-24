@@ -78,31 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function triggerConfetti() {
-        // CHAOTIC CONFETTI (150 pieces)
-        for (let i = 0; i < 150; i++) {
+        // CHAOTIC GRAVITY CONFETTI (180 pieces)
+        for (let i = 0; i < 180; i++) {
             const confetti = document.createElement('div');
             confetti.style.position = 'fixed';
-            confetti.style.width = Math.random() * 15 + 5 + 'px';
-            confetti.style.height = Math.random() * 15 + 5 + 'px';
+            confetti.style.width = Math.random() * 18 + 5 + 'px';
+            confetti.style.height = Math.random() * 12 + 5 + 'px';
             confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
             
-            // Random start from any edge
-            const side = Math.floor(Math.random() * 4);
-            let startX, startY, endX, endY;
+            // Random start primarily from top, some from upper sides
+            const startX = Math.random() * 120 - 10 + 'vw';
+            const startY = Math.random() * -50 - 20 + 'px';
             
-            if (side === 0) { // Top
-                startX = Math.random() * 100 + 'vw'; startY = '-20px';
-                endX = Math.random() * 100 + 'vw'; endY = '120vh';
-            } else if (side === 1) { // Bottom
-                startX = Math.random() * 100 + 'vw'; startY = '110vh';
-                endX = Math.random() * 100 + 'vw'; endY = '-20vh';
-            } else if (side === 2) { // Left
-                startX = '-20px'; startY = Math.random() * 100 + 'vh';
-                endX = '120vw'; endY = Math.random() * 100 + 'vh';
-            } else { // Right
-                startX = '110vw'; startY = Math.random() * 100 + 'vh';
-                endX = '-20vw'; endY = Math.random() * 100 + 'vh';
-            }
+            // Random drift and messy end
+            const endX = (parseFloat(startX) + (Math.random() * 40 - 20)) + 'vw';
+            const endY = '110vh';
 
             confetti.style.left = startX;
             confetti.style.top = startY;
@@ -110,11 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(confetti);
 
             const animation = confetti.animate([
-                { top: startY, left: startX, transform: `rotate(0deg)` },
-                { top: endY, left: endX, transform: `rotate(${Math.random() * 2000 - 1000}deg)` }
+                { top: startY, left: startX, transform: `rotate(0deg) skew(0deg)` },
+                { 
+                    top: '50vh', 
+                    left: (parseFloat(startX) + (Math.random() * 20 - 10)) + 'vw', 
+                    transform: `rotate(${Math.random() * 500}deg) skew(${Math.random() * 20}deg)` 
+                },
+                { top: endY, left: endX, transform: `rotate(${Math.random() * 1500}deg) skew(0deg)` }
             ], {
-                duration: 1000 + Math.random() * 2000,
-                easing: 'cubic-bezier(0.1, 0.5, 0.5, 1)'
+                duration: 1500 + Math.random() * 3000,
+                easing: 'ease-in'
             });
 
             animation.onfinish = () => confetti.remove();
