@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const djConsole = document.getElementById('dj-console');
     const feedback = document.getElementById('game-feedback');
     const stopBtn = document.getElementById('stop-dj');
+    const okBtn = document.getElementById('ok-dj-now');
     const statusMsg = document.querySelector('.status-msg');
     
     let audioCtx;
@@ -17,6 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
         "bassline detected probably",
         "you pressed a thing. art happened."
     ];
+
+    function stopGame() {
+        clearInterval(beatInterval);
+        if (audioCtx) audioCtx.close();
+        
+        isPlaying = false;
+        document.body.classList.remove('party-mode');
+        document.querySelector('.cursed-container').classList.remove('game-active');
+        document.querySelectorAll('.deck').forEach(d => d.classList.remove('spinning'));
+        stopBtn.classList.add('hidden');
+        startBtn.classList.remove('hidden');
+        djConsole.classList.add('hidden');
+        feedback.classList.add('hidden');
+        audioCtx = null;
+    }
 
     function createSillyBeat() {
         if (!audioCtx) {
@@ -127,17 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stopBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        clearInterval(beatInterval);
-        if (audioCtx) audioCtx.close();
-        
-        isPlaying = false;
-        document.body.classList.remove('party-mode');
-        document.querySelector('.cursed-container').classList.remove('game-active');
-        document.querySelectorAll('.deck').forEach(d => d.classList.remove('spinning'));
-        stopBtn.classList.add('hidden');
-        startBtn.classList.remove('hidden');
-        djConsole.classList.add('hidden');
-        feedback.classList.add('hidden');
-        audioCtx = null;
+        stopGame();
+    });
+
+    okBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopGame();
     });
 });
