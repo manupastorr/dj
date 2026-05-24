@@ -80,22 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
-    function triggerSingleConfetti(side) {
+    function triggerSingleConfetti() {
         const confetti = document.createElement('div');
         confetti.style.position = 'fixed';
-        confetti.style.width = Math.random() * 15 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.width = Math.random() * 18 + 5 + 'px';
+        confetti.style.height = Math.random() * 12 + 5 + 'px';
         confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
         
-        // Shoot from bottom corners
-        const startX = side === 'left' ? '-10px' : 'calc(100vw + 10px)';
-        const startY = 'calc(100vh + 10px)';
-        
-        const midX = side === 'left' ? (Math.random() * 40 + 10) + 'vw' : (90 - Math.random() * 40) + 'vw';
-        const midY = (Math.random() * 40 + 10) + 'vh'; // Shoot UP
-        
-        const endX = (parseFloat(midX) + (Math.random() * 40 - 20)) + 'vw';
-        const endY = '110vh'; // Fall back DOWN
+        const startX = Math.random() * 120 - 10 + 'vw';
+        const startY = Math.random() * -50 - 20 + 'px';
+        const endX = (parseFloat(startX) + (Math.random() * 40 - 20)) + 'vw';
+        const endY = '110vh';
 
         confetti.style.left = startX;
         confetti.style.top = startY;
@@ -103,12 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(confetti);
 
         const animation = confetti.animate([
-            { top: startY, left: startX, transform: `rotate(0deg)` },
-            { top: midY, left: midX, transform: `rotate(${Math.random() * 500}deg)` },
-            { top: endY, left: endX, transform: `rotate(${Math.random() * 2000}deg)` }
+            { top: startY, left: startX, transform: `rotate(0deg) skew(0deg)` },
+            { 
+                top: '50vh', 
+                left: (parseFloat(startX) + (Math.random() * 20 - 10)) + 'vw', 
+                transform: `rotate(${Math.random() * 500}deg) skew(${Math.random() * 20}deg)` 
+            },
+            { top: endY, left: endX, transform: `rotate(${Math.random() * 1500}deg) skew(0deg)` }
         ], {
-            duration: 1500 + Math.random() * 1500,
-            easing: 'cubic-bezier(0.1, 0.9, 0.5, 1)' // Rapid start, slow fall
+            duration: 1500 + Math.random() * 3000,
+            easing: 'ease-in'
         });
 
         animation.onfinish = () => confetti.remove();
@@ -116,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function triggerConfetti(count = 100) {
         for (let i = 0; i < count; i++) {
-            triggerSingleConfetti(i % 2 === 0 ? 'left' : 'right');
+            triggerSingleConfetti();
         }
     }
 
