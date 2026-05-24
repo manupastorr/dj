@@ -355,6 +355,13 @@ header {
     gap: 0.5rem;
     max-height: 90vh;
     overflow-y: auto;
+    animation: cursed-pulse 0.8s infinite ease-in-out;
+}
+
+@keyframes cursed-pulse {
+    0% { transform: scale(0.95) rotate(-1deg); }
+    50% { transform: scale(1.05) rotate(1deg); }
+    100% { transform: scale(0.95) rotate(-1deg); }
 }
 
 .congrats {
