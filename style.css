@@ -194,6 +194,11 @@ header {
         2px -3px 0 black;
 }
 
+.warning {
+    color: var(--neon-red);
+    font-weight: bold;
+}
+
 .cursed-links {
     width: 100%;
     max-width: 500px;
