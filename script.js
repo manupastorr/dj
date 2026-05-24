@@ -78,25 +78,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function triggerConfetti() {
-        // MORE CONFETTI (100 pieces)
-        for (let i = 0; i < 100; i++) {
+        // CHAOTIC CONFETTI (150 pieces)
+        for (let i = 0; i < 150; i++) {
             const confetti = document.createElement('div');
             confetti.style.position = 'fixed';
-            confetti.style.width = '12px';
-            confetti.style.height = '12px';
+            confetti.style.width = Math.random() * 15 + 5 + 'px';
+            confetti.style.height = Math.random() * 15 + 5 + 'px';
             confetti.style.backgroundColor = ['#ff0000', '#39ff14', '#00ffff', '#ff00ff', '#ffff00'][Math.floor(Math.random() * 5)];
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.top = '-10px';
+            
+            // Random start from any edge
+            const side = Math.floor(Math.random() * 4);
+            let startX, startY, endX, endY;
+            
+            if (side === 0) { // Top
+                startX = Math.random() * 100 + 'vw'; startY = '-20px';
+                endX = Math.random() * 100 + 'vw'; endY = '120vh';
+            } else if (side === 1) { // Bottom
+                startX = Math.random() * 100 + 'vw'; startY = '110vh';
+                endX = Math.random() * 100 + 'vw'; endY = '-20vh';
+            } else if (side === 2) { // Left
+                startX = '-20px'; startY = Math.random() * 100 + 'vh';
+                endX = '120vw'; endY = Math.random() * 100 + 'vh';
+            } else { // Right
+                startX = '110vw'; startY = Math.random() * 100 + 'vh';
+                endX = '-20vw'; endY = Math.random() * 100 + 'vh';
+            }
+
+            confetti.style.left = startX;
+            confetti.style.top = startY;
             confetti.style.zIndex = '2000';
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
             document.body.appendChild(confetti);
 
             const animation = confetti.animate([
-                { top: '-10px', transform: `rotate(0deg) translateX(0)` },
-                { top: '100vh', transform: `rotate(${Math.random() * 1000}deg) translateX(${Math.random() * 100 - 50}px)` }
+                { top: startY, left: startX, transform: `rotate(0deg)` },
+                { top: endY, left: endX, transform: `rotate(${Math.random() * 2000 - 1000}deg)` }
             ], {
-                duration: 1500 + Math.random() * 2500,
-                easing: 'cubic-bezier(0, .9, .57, 1)'
+                duration: 1000 + Math.random() * 2000,
+                easing: 'cubic-bezier(0.1, 0.5, 0.5, 1)'
             });
 
             animation.onfinish = () => confetti.remove();
