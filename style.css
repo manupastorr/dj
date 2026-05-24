@@ -167,7 +167,7 @@ header {
     font-family: var(--font-impact);
     font-size: clamp(3.5rem, 7vw, 5rem);
     line-height: 0.7;
-    transform: rotate(-25deg) skew(-3deg);
+    transform: skew(-3deg);
     -webkit-text-stroke: 4px black;
     text-shadow: 9px 7px 0 black;
 }
@@ -594,7 +594,7 @@ footer {
         left: 85%;
         top: 70%;
         font-size: clamp(2.8rem, 11vw, 3.8rem);
-        transform: rotate(-20deg) skew(-3deg);
+        transform: skew(-3deg);
         -webkit-text-stroke: 3px black;
     }
 }
