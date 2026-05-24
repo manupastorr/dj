@@ -102,7 +102,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
     flex-shrink: 1;
     min-height: 0;
 }
@@ -147,7 +146,7 @@ header {
 
 .arrow-diy {
     position: absolute;
-    left: 58%;
+    left: 72%;
     top: 53%;
     z-index: 3;
     pointer-events: none;
@@ -161,11 +160,13 @@ header {
 }
 
 .arrow-diy::before {
-    content: "\2192";
+    content: "\2190";
 }
 
 .deck-callout {
-    flex: 0 0 185px;
+    position: absolute;
+    left: calc(50% + 210px);
+    top: 42%;
     color: var(--neon-cyan);
     font-family: var(--font-hand);
     font-size: clamp(1.8rem, 4.8vw, 3.2rem);
