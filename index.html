@@ -20,7 +20,7 @@
     <meta property="twitter:description" content="newborn DJ learning to crawl. San Marcos Sierras → Leipzig.">
     <meta property="twitter:image" content="manupastor-meme.png">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎧</text></svg>">
     
     <!-- Rough font for that DIY feel -->
@@ -43,10 +43,13 @@
             <p class="location">San Marcos Sierras &rarr; Leipzig</p>
         </header>
 
-        <div class="meme-stage">
-            <div class="arrow-diy">&rarr;</div>
-            <img src="manupastor-meme.png" alt="Cursed Manu Pastor DJ Meme" class="main-meme">
-            <div class="scribble-diy"></div>
+        <div class="meme-trigger-zone">
+            <button id="press-to-dj" class="meme-stage meme-trigger" type="button" aria-label="Press the tiny decks to become a DJ.">
+                <div class="arrow-diy" aria-hidden="true"></div>
+                <img src="manupastor-meme.png" alt="Cursed Manu Pastor DJ Meme" class="main-meme">
+                <div class="scribble-diy"></div>
+            </button>
+            <div class="deck-callout" aria-hidden="true">PRESS THE TINY DECKS</div>
         </div>
 
         <nav class="cursed-links">
@@ -56,7 +59,6 @@
         </nav>
 
         <section class="game-section">
-            <button id="press-to-dj" class="cursed-btn dj-start">PRESS TO DJ</button>
             <div id="dj-console" class="hidden">
                 <div class="console-body">
                     <div class="deck deck-1"><div class="platter"></div></div>

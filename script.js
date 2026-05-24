@@ -123,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isPlaying) return;
         
         isPlaying = true;
-        startBtn.classList.add('hidden');
         djConsole.classList.remove('hidden');
         stopBtn.classList.remove('hidden');
         document.querySelector('.cursed-container').classList.add('game-active');

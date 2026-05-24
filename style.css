@@ -52,7 +52,7 @@ body.cursed-body {
 }
 
 .cursed-container {
-    max-width: 500px;
+    max-width: 760px;
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -68,6 +68,7 @@ body.cursed-body {
 /* Shrink elements when game is active */
 .game-active .artist-name { font-size: 1.8rem; }
 .game-active .location { font-size: 0.8rem; }
+.game-active .meme-trigger-zone { max-width: 410px; }
 .game-active .meme-stage { max-width: 250px; }
 .game-active .cursed-links { gap: 0.4rem; }
 .game-active .cursed-btn { padding: 8px; font-size: 0.9rem; }
@@ -94,16 +95,46 @@ header {
     text-shadow: 2px 2px 0px black;
 }
 
-.meme-stage {
+.meme-trigger-zone {
     position: relative;
     width: 100%;
+    max-width: 610px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-shrink: 1;
+    min-height: 0;
+}
+
+.meme-stage {
+    position: relative;
+    width: min(100%, 380px);
+    flex: 0 0 auto;
     max-width: 380px;
     padding: 10px;
     border: 5px solid white;
     background: black;
     box-shadow: 10px 10px 0px var(--neon-magenta);
-    flex-shrink: 1;
-    min-height: 0;
+    overflow: visible;
+}
+
+.meme-trigger {
+    appearance: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+
+.meme-trigger:focus-visible {
+    outline: 6px dashed var(--neon-cyan);
+    outline-offset: 7px;
+}
+
+.meme-trigger:active {
+    transform: rotate(-0.7deg) translate(4px, 4px);
+    box-shadow: 6px 6px 0px var(--neon-magenta);
 }
 
 .main-meme {
@@ -111,20 +142,47 @@ header {
     height: auto;
     display: block;
     filter: contrast(1.1) brightness(1.1);
+    pointer-events: none;
 }
 
 .arrow-diy {
     position: absolute;
-    top: -30px;
-    left: -10px;
-    font-size: 3rem;
+    left: 58%;
+    top: 53%;
+    z-index: 3;
+    pointer-events: none;
     color: var(--neon-green);
+    font-family: var(--font-impact);
+    font-size: clamp(6rem, 11vw, 8.5rem);
+    line-height: 0.7;
+    transform: rotate(23deg) skew(-5deg);
+    -webkit-text-stroke: 8px black;
+    text-shadow: 9px 7px 0 black;
+}
+
+.arrow-diy::before {
+    content: "\2192";
+}
+
+.deck-callout {
+    flex: 0 0 185px;
+    color: var(--neon-cyan);
     font-family: var(--font-hand);
-    transform: rotate(140deg);
+    font-size: clamp(1.8rem, 4.8vw, 3.2rem);
+    line-height: 0.74;
+    text-transform: uppercase;
+    transform: rotate(6deg);
+    pointer-events: none;
+    -webkit-text-stroke: 2px black;
+    text-shadow:
+        4px 4px 0 black,
+        -3px 2px 0 black,
+        2px -3px 0 black;
 }
 
 .cursed-links {
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
@@ -159,18 +217,11 @@ header {
 /* Game Section */
 .game-section {
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-}
-
-.dj-start {
-    background: var(--neon-green) !important;
-    color: black !important;
-    width: 100%;
-    max-width: 320px;
-    animation: flash-border 1s infinite alternate;
 }
 
 #dj-console {
@@ -451,13 +502,14 @@ header {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .party-mode, .loading-fill, .spinning .platter, .dj-start {
+    .party-mode, .loading-fill, .spinning .platter {
         animation: none !important;
     }
 }
 
 footer {
     width: 100%;
+    max-width: 500px;
 }
 
 .footer-text {
@@ -490,6 +542,29 @@ footer {
 
 @media (max-height: 700px) {
     .artist-name { font-size: 1.8rem; }
+    .meme-trigger-zone { max-width: 520px; }
     .meme-stage { max-width: 280px; }
     .cursed-btn { padding: 8px; font-size: 1rem; }
+}
+
+@media (max-width: 720px) {
+    .meme-trigger-zone {
+        max-width: 380px;
+        display: block;
+    }
+
+    .deck-callout {
+        position: absolute;
+        right: -8px;
+        top: 37%;
+        width: 150px;
+        font-size: clamp(1.35rem, 7vw, 2.3rem);
+        text-align: left;
+    }
+
+    .arrow-diy {
+        left: 55%;
+        top: 53%;
+        font-size: clamp(5rem, 20vw, 7rem);
+    }
 }
