@@ -48,7 +48,7 @@ body.cursed-body {
         radial-gradient(circle at 50% 90%, var(--neon-cyan) 0%, transparent 25%),
         radial-gradient(circle at 90% 80%, var(--neon-red) 0%, transparent 15%);
     filter: blur(40px);
-    opacity: 0.4;
+    opacity: 0.12;
 }
 
 .cursed-container {
@@ -344,13 +344,9 @@ header {
     background: white;
     color: black;
     padding: 1.5rem;
-    /* Thick rainbow neon border */
-    border: 10px solid var(--neon-red);
-    box-shadow: 
-        0 0 20px var(--neon-red),
-        0 0 40px var(--neon-green),
-        0 0 60px var(--neon-magenta),
-        15px 15px 0px black;
+    border: 12px solid black;
+    border-radius: 0;
+    box-shadow: 14px 11px 0px var(--neon-magenta), -6px -4px 0px var(--neon-green);
     max-width: 500px;
     width: 95%;
     display: flex;
@@ -359,17 +355,15 @@ header {
     gap: 0.8rem;
     max-height: 90vh;
     overflow-y: auto;
-    animation: 
-        cursed-pulse 0.8s infinite ease-in-out,
-        rainbow-border 2s infinite linear;
+    transform: rotate(-1.4deg) skew(-0.6deg);
+    clip-path: polygon(1% 0, 99% 1%, 100% 97%, 96% 100%, 2% 98%, 0 4%);
+    animation: cursed-card-wobble 0.9s infinite steps(2, end);
 }
 
-@keyframes rainbow-border {
-    0% { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red), 15px 15px 0px black; }
-    25% { border-color: var(--neon-green); box-shadow: 0 0 30px var(--neon-green), 15px 15px 0px black; }
-    50% { border-color: var(--neon-cyan); box-shadow: 0 0 30px var(--neon-cyan), 15px 15px 0px black; }
-    75% { border-color: var(--neon-magenta); box-shadow: 0 0 30px var(--neon-magenta), 15px 15px 0px black; }
-    100% { border-color: var(--neon-red); box-shadow: 0 0 30px var(--neon-red), 15px 15px 0px black; }
+@keyframes cursed-card-wobble {
+    0% { transform: rotate(-1.4deg) skew(-0.6deg); }
+    50% { transform: rotate(-0.6deg) skew(0.4deg); }
+    100% { transform: rotate(-1.4deg) skew(-0.6deg); }
 }
 
 .congrats {
@@ -396,7 +390,9 @@ header {
 
 .diploma-container {
     width: 100%;
-    border: 3px solid black;
+    border: 5px solid black;
+    box-shadow: 5px 5px 0px black;
+    transform: rotate(0.7deg);
     line-height: 0;
 }
 
@@ -442,7 +438,8 @@ header {
 }
 
 .party-mode {
-    animation: flash-bg 0.5s infinite linear !important;
+    background-color: var(--bg-black);
+    animation: flash-bg 0.35s steps(1, end) 1 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
