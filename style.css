@@ -146,15 +146,15 @@ header {
 
 .arrow-diy {
     position: absolute;
-    left: 65%;
-    top: 48%;
+    left: 72%;
+    top: 53%;
     z-index: 3;
     pointer-events: none;
     color: var(--neon-green);
     font-family: var(--font-impact);
     font-size: clamp(6rem, 11vw, 8.5rem);
     line-height: 0.7;
-    transform: rotate(200deg) skew(-5deg);
+    transform: rotate(23deg) skew(-5deg);
     -webkit-text-stroke: 8px black;
     text-shadow: 9px 7px 0 black;
 }
