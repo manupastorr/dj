@@ -146,10 +146,10 @@ header {
 
 .deck-hitbox {
     position: absolute;
-    right: 12%;
-    bottom: 18%;
-    width: 38%;
-    height: 32%;
+    right: 17%;
+    bottom: 21%;
+    width: 24%;
+    height: 22%;
     z-index: 4;
     cursor: pointer;
     /* invisible but clickable */
@@ -582,10 +582,10 @@ footer {
     }
 
     .deck-hitbox {
-        right: 10%;
-        bottom: 15%;
-        width: 42%;
-        height: 35%;
+        right: 15%;
+        bottom: 20%;
+        width: 26%;
+        height: 24%;
     }
 
     .arrow-diy {
