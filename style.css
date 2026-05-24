@@ -72,7 +72,7 @@ body.cursed-body {
 .game-active .meme-stage { max-width: 250px; }
 .game-active .cursed-links { gap: 0.4rem; }
 .game-active .cursed-btn { padding: 8px; font-size: 0.9rem; }
-.game-active #dj-console { transform: scale(0.9); }
+.game-active #dj-console { transform: rotate(-1.2deg); }
 
 header {
     transform: rotate(-2deg);
@@ -226,40 +226,117 @@ header {
 }
 
 #dj-console {
-    background: #222;
-    border: 4px solid white;
-    padding: 10px;
-    box-shadow: 8px 8px 0px var(--neon-cyan);
-    width: 100%;
-    max-width: 400px;
+    position: relative;
+    width: min(100%, 250px);
+    max-width: 250px;
+    padding: 13px 12px 10px;
+    background:
+        linear-gradient(92deg, transparent 0 17%, rgba(255, 255, 255, 0.08) 17% 19%, transparent 19%),
+        linear-gradient(178deg, #1f1f1f, #090909 55%, #272727);
+    border: 6px solid white;
+    border-radius: 2px 11px 4px 8px;
+    box-shadow:
+        5px 5px 0 black,
+        9px 8px 0 var(--neon-cyan),
+        -3px -4px 0 black;
+    clip-path: polygon(2% 4%, 98% 0, 100% 92%, 94% 100%, 3% 97%, 0 11%);
+    cursor: pointer;
+    outline: 3px solid black;
+    outline-offset: -10px;
 }
 
 .console-body {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 5px;
+    min-height: 122px;
+    margin-bottom: 4px;
+}
+
+#dj-console::before,
+#dj-console::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#dj-console::before {
+    inset: 7px 10px auto auto;
+    width: 54px;
+    height: 16px;
+    border-top: 4px solid var(--neon-green);
+    border-bottom: 3px solid black;
+    transform: rotate(5deg);
+}
+
+#dj-console::after {
+    left: 18px;
+    bottom: 10px;
+    width: 58px;
+    height: 18px;
+    border: 4px solid white;
+    border-right-color: black;
+    border-bottom-color: var(--neon-magenta);
+    transform: rotate(-7deg) skew(-10deg);
 }
 
 .deck {
-    width: 100px;
-    height: 100px;
-    background: #111;
-    border: 3px solid white;
-    border-radius: 50%;
+    position: relative;
+    width: 64px;
+    height: 62px;
+    background:
+        radial-gradient(circle at 46% 43%, #363636 0 9%, transparent 10%),
+        #121212;
+    border: 5px solid white;
+    border-right-width: 8px;
+    border-bottom-color: black;
+    border-radius: 46% 54% 41% 59% / 51% 42% 58% 49%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    box-shadow: 3px 4px 0 black;
+    transform: rotate(-5deg);
+}
+
+.deck-1 {
+    align-self: flex-start;
+}
+
+.deck-2 {
+    align-self: flex-end;
+    transform: rotate(7deg) scale(0.92);
+    border-radius: 52% 48% 61% 39% / 43% 58% 42% 57%;
+}
+
+.deck::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 9px;
+    width: 39px;
+    height: 32px;
+    border-top: 4px dashed var(--neon-cyan);
+    border-left: 3px solid black;
+    border-radius: 51% 49% 55% 45%;
+    transform: rotate(18deg);
+    opacity: 0.9;
 }
 
 .platter {
-    width: 80%;
-    height: 80%;
-    border: 2px dashed white;
-    border-radius: 50%;
-    background: radial-gradient(circle, #333 30%, transparent 31%);
+    width: 46px;
+    height: 43px;
+    border: 4px dashed white;
+    border-top-color: var(--neon-green);
+    border-right-color: black;
+    border-radius: 44% 56% 50% 50% / 53% 44% 56% 47%;
+    background:
+        radial-gradient(circle at 52% 45%, black 0 8%, white 9% 12%, transparent 13%),
+        radial-gradient(circle at 42% 58%, #3a3a3a 0 28%, transparent 30%);
+    transform: rotate(12deg);
 }
 
 .spinning .platter {
@@ -267,66 +344,90 @@ header {
 }
 
 .mixer {
-    flex: 1;
-    height: 100px;
-    border: 2px solid white;
+    position: relative;
+    flex: 0 0 57px;
+    height: 87px;
+    border: 5px solid white;
+    border-left-color: black;
+    border-bottom-width: 7px;
+    border-radius: 3px 8px 2px 10px;
+    background:
+        radial-gradient(circle at 18px 20px, var(--neon-red) 0 5px, black 6px 8px, transparent 9px),
+        radial-gradient(circle at 45px 23px, var(--neon-green) 0 4px, black 5px 7px, transparent 8px),
+        linear-gradient(105deg, #313131, #111 65%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    transform: rotate(2deg) skew(-2deg);
+    box-shadow: 3px 5px 0 black;
 }
 
 .fader {
-    width: 40px;
-    height: 10px;
-    background: var(--neon-red);
-    border: 2px solid white;
+    width: 38px;
+    height: 37px;
+    background:
+        linear-gradient(90deg, transparent 0 42%, white 42% 54%, transparent 54%),
+        linear-gradient(0deg, transparent 0 16%, var(--neon-cyan) 16% 29%, transparent 29% 53%, var(--neon-magenta) 53% 66%, transparent 66%);
+    border: 4px solid black;
+    border-radius: 1px 5px 0 7px;
+    box-shadow: inset 0 0 0 3px #5d5d5d;
+    transform: rotate(-4deg);
 }
 .fx-btn {
     font-family: var(--font-impact);
-    background: var(--neon-magenta);
+    background: #ffff00;
     color: white;
-    padding: 4px;
-    border: 2px solid black;
-    font-size: 0.7rem;
+    padding: 5px 6px;
+    border: 4px solid black;
+    border-radius: 3px 1px 7px 2px;
+    font-size: 0.5rem;
     cursor: pointer;
+    box-shadow: 4px 4px 0 var(--neon-magenta);
+    text-shadow: 2px 2px 0 black;
+    transform: rotate(6deg);
 }
 
 /* Temptation Buttons */
-.console-body {
-    position: relative; /* For absolute buttons */
-}
-
 .temptation-btn {
     position: absolute;
     font-family: var(--font-impact);
-    font-size: 0.6rem;
-    padding: 4px 8px;
-    border: 2px solid black;
+    font-size: 0.48rem;
+    line-height: 1.04;
+    padding: 6px 7px 5px;
+    border: 4px solid black;
+    border-radius: 1px 7px 2px 4px;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    z-index: 10;
-    box-shadow: 3px 3px 0px black;
-}
-
-#dj-console:hover .temptation-btn {
     opacity: 1;
     pointer-events: auto;
-    animation: wobble-btn 0.5s infinite alternate;
+    transition: filter 0.12s, translate 0.12s;
+    z-index: 10;
+    box-shadow: 4px 5px 0 black;
+    text-shadow: 1px 1px 0 white, 2px 2px 0 black;
+    min-height: 31px;
+    max-width: 90px;
 }
 
-.b-1 { top: -10px; left: 10%; background: var(--neon-red); color: white; transform: rotate(-10deg); }
-.b-2 { top: -15px; right: 15%; background: var(--neon-green); color: black; transform: rotate(15deg); }
-.b-3 { bottom: -10px; left: 20%; background: var(--neon-cyan); color: black; transform: rotate(5deg); }
-.b-4 { bottom: -15px; right: 10%; background: var(--neon-magenta); color: white; transform: rotate(-5deg); }
-
-@keyframes wobble-btn {
-    from { transform: rotate(-5deg) scale(1); }
-    to { transform: rotate(5deg) scale(1.1); }
+.temptation-btn:hover,
+.temptation-btn:focus-visible,
+.fx-btn:hover,
+.fx-btn:focus-visible {
+    filter: brightness(1.2) saturate(1.6);
+    outline: 3px dashed white;
+    outline-offset: 2px;
 }
+
+.temptation-btn:active,
+.fx-btn:active {
+    translate: 3px 3px;
+    box-shadow: 2px 2px 0 black;
+}
+
+.b-1 { top: -6px; left: 6%; background: var(--neon-red); color: white; transform: rotate(-12deg); }
+.b-2 { top: 4px; right: 3%; background: var(--neon-green); color: black; transform: rotate(13deg); }
+.b-3 { bottom: 1px; left: 27%; background: var(--neon-cyan); color: black; transform: rotate(6deg); }
+.b-4 { bottom: -7px; right: 5%; background: var(--neon-magenta); color: white; transform: rotate(-8deg); }
 
 /* Intense Party Elements */
 .strobe-overlay {
@@ -471,12 +572,26 @@ header {
 }
 
 #stop-dj {
-    margin-top: 10px;
+    position: relative;
+    z-index: 15;
+    margin: -16px 0 0 8px;
     background: white;
-    border: 2px solid black;
-    font-family: var(--font-meme);
-    padding: 4px 8px;
+    color: black;
+    border: 4px solid black;
+    border-radius: 2px 1px 8px 3px;
+    font-family: var(--font-impact);
+    font-size: 0.52rem;
+    padding: 6px 8px 5px;
     cursor: pointer;
+    box-shadow: 4px 4px 0 var(--neon-magenta);
+    transform: rotate(-2.5deg);
+}
+
+#stop-dj:focus-visible,
+#stop-dj:hover {
+    outline: 3px dashed var(--neon-cyan);
+    outline-offset: 2px;
+    filter: brightness(1.15) saturate(1.4);
 }
 
 .hidden { display: none !important; }
