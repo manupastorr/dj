@@ -159,16 +159,16 @@ header {
 
 .arrow-diy {
     position: absolute;
-    left: 83%;
-    top: 61%;
+    left: 70%;
+    top: 68%;
     z-index: 3;
     pointer-events: none;
     color: var(--neon-green);
     font-family: var(--font-impact);
     font-size: clamp(3.5rem, 7vw, 5rem);
     line-height: 0.7;
-    transform: rotate(-8deg) skew(-3deg);
-    -webkit-text-stroke: 8px black;
+    transform: rotate(-25deg) skew(-3deg);
+    -webkit-text-stroke: 4px black;
     text-shadow: 9px 7px 0 black;
 }
 
@@ -179,7 +179,7 @@ header {
 .deck-callout {
     position: absolute;
     left: calc(50% + 245px);
-    top: 42%;
+    top: 52%;
     color: var(--neon-cyan);
     font-family: var(--font-hand);
     font-size: clamp(1.2rem, 3vw, 2rem);
