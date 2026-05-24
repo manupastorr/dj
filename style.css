@@ -164,9 +164,10 @@ header {
     bottom: 38%;
     color: var(--neon-cyan);
     font-family: var(--font-hand);
-    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
-    line-height: 0.7;
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+    line-height: 0.95;
     text-transform: uppercase;
+    text-align: center;
     pointer-events: none;
     -webkit-text-stroke: 2px black;
     text-shadow:
@@ -558,8 +559,8 @@ footer {
         left: 58%;
         bottom: 32%;
         width: auto;
-        font-size: clamp(1.3rem, 6.5vw, 2.2rem);
-        text-align: left;
+        font-size: clamp(1.2rem, 6vw, 1.9rem);
+        text-align: center;
         transform: none;
     }
 
