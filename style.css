@@ -144,6 +144,17 @@ header {
     pointer-events: none;
 }
 
+.deck-hitbox {
+    position: absolute;
+    right: 12%;
+    bottom: 18%;
+    width: 38%;
+    height: 32%;
+    z-index: 4;
+    cursor: pointer;
+    /* invisible but clickable */
+}
+
 .arrow-diy {
     position: absolute;
     left: 83%;
@@ -567,6 +578,13 @@ footer {
         width: 150px;
         font-size: clamp(1.35rem, 7vw, 2.3rem);
         text-align: left;
+    }
+
+    .deck-hitbox {
+        right: 10%;
+        bottom: 15%;
+        width: 42%;
+        height: 35%;
     }
 
     .arrow-diy {
