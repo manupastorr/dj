@@ -231,7 +231,6 @@ header {
     background: var(--neon-red);
     border: 2px solid white;
 }
-
 .fx-btn {
     font-family: var(--font-impact);
     background: var(--neon-magenta);
@@ -242,6 +241,42 @@ header {
     cursor: pointer;
 }
 
+/* Temptation Buttons */
+.console-body {
+    position: relative; /* For absolute buttons */
+}
+
+.temptation-btn {
+    position: absolute;
+    font-family: var(--font-impact);
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    border: 2px solid black;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 10;
+    box-shadow: 3px 3px 0px black;
+}
+
+#dj-console:hover .temptation-btn {
+    opacity: 1;
+    pointer-events: auto;
+    animation: wobble-btn 0.5s infinite alternate;
+}
+
+.b-1 { top: -10px; left: 10%; background: var(--neon-red); color: white; transform: rotate(-10deg); }
+.b-2 { top: -15px; right: 15%; background: var(--neon-green); color: black; transform: rotate(15deg); }
+.b-3 { bottom: -10px; left: 20%; background: var(--neon-cyan); color: black; transform: rotate(5deg); }
+.b-4 { bottom: -15px; right: 10%; background: var(--neon-magenta); color: white; transform: rotate(-5deg); }
+
+@keyframes wobble-btn {
+    from { transform: rotate(-5deg) scale(1); }
+    to { transform: rotate(5deg) scale(1.1); }
+}
+
+#game-feedback {
 /* Intense Party Elements */
 .strobe-overlay {
     position: fixed;
