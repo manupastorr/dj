@@ -146,15 +146,15 @@ header {
 
 .arrow-diy {
     position: absolute;
-    left: 72%;
-    top: 53%;
+    left: 78%;
+    top: 61%;
     z-index: 3;
     pointer-events: none;
     color: var(--neon-green);
     font-family: var(--font-impact);
     font-size: clamp(6rem, 11vw, 8.5rem);
     line-height: 0.7;
-    transform: rotate(23deg) skew(-5deg);
+    transform: rotate(-8deg) skew(-3deg);
     -webkit-text-stroke: 8px black;
     text-shadow: 9px 7px 0 black;
 }
@@ -564,8 +564,8 @@ footer {
     }
 
     .arrow-diy {
-        left: 55%;
-        top: 53%;
+        left: 68%;
+        top: 60%;
         font-size: clamp(5rem, 20vw, 7rem);
     }
 }
