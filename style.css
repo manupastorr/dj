@@ -160,8 +160,8 @@ header {
 
 .deck-callout {
     position: absolute;
-    left: 60%;
-    bottom: 45%;
+    left: 75%;
+    bottom: 50%;
     color: var(--neon-cyan);
     font-family: var(--font-hand);
     font-size: clamp(0.95rem, 2.6vw, 1.45rem);
@@ -556,8 +556,8 @@ footer {
 
     .deck-callout {
         position: absolute;
-        left: 58%;
-        bottom: 42%;
+        left: 72%;
+        bottom: 48%;
         width: auto;
         font-size: clamp(1.05rem, 5.2vw, 1.65rem);
         text-align: center;
