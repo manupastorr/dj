@@ -61,36 +61,21 @@ body.cursed-body {
 
 header {
     transform: rotate(-2deg);
+    margin-bottom: 0.5rem;
 }
 
 .artist-name {
     font-family: var(--font-impact);
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(2rem, 10vw, 3.5rem);
     color: var(--text-white);
     text-shadow: 4px 4px 0px var(--neon-red), -2px -2px 0px var(--neon-cyan);
     line-height: 0.9;
     margin-bottom: 0.5rem;
 }
 
-.subtitle-wrap {
-    background: var(--neon-green);
-    padding: 5px 10px;
-    transform: rotate(1deg);
-    border: 3px solid black;
-    box-shadow: 5px 5px 0px black;
-    margin-bottom: 0.5rem;
-}
-
-.subtitle {
-    color: black;
-    font-weight: 800;
-    font-size: 1.1rem;
-    text-transform: lowercase;
-}
-
 .location {
     font-family: var(--font-hand);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--neon-cyan);
     text-shadow: 2px 2px 0px black;
 }
