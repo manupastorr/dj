@@ -29,6 +29,11 @@ body.cursed-body {
     position: relative;
 }
 
+/* Allow scrolling ONLY if absolutely necessary on very small screens */
+@media (max-height: 500px) {
+    body.cursed-body { overflow-y: auto; align-items: flex-start; }
+}
+
 /* MS Paint blobs */
 .neon-blobs {
     position: fixed;
@@ -53,29 +58,38 @@ body.cursed-body {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 0.5rem;
     position: relative;
     z-index: 1;
 }
 
+/* Shrink elements when game is active */
+.game-active .artist-name { font-size: 1.8rem; }
+.game-active .location { font-size: 0.8rem; }
+.game-active .meme-stage { max-width: 250px; }
+.game-active .cursed-links { gap: 0.4rem; }
+.game-active .cursed-btn { padding: 8px; font-size: 0.9rem; }
+.game-active #dj-console { transform: scale(0.9); }
+
 header {
     transform: rotate(-2deg);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .artist-name {
     font-family: var(--font-impact);
-    font-size: clamp(2rem, 10vw, 3.5rem);
+    font-size: clamp(1.8rem, 10vw, 3.5rem);
     color: var(--text-white);
     text-shadow: 4px 4px 0px var(--neon-red), -2px -2px 0px var(--neon-cyan);
     line-height: 0.9;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .location {
     font-family: var(--font-hand);
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--neon-cyan);
     text-shadow: 2px 2px 0px black;
 }
@@ -83,11 +97,13 @@ header {
 .meme-stage {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 380px;
     padding: 10px;
     border: 5px solid white;
     background: black;
     box-shadow: 10px 10px 0px var(--neon-magenta);
+    flex-shrink: 1;
+    min-height: 0;
 }
 
 .main-meme {

@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.classList.add('hidden');
         djConsole.classList.remove('hidden');
         stopBtn.classList.remove('hidden');
+        document.querySelector('.cursed-container').classList.add('game-active');
         
         createSillyBeat();
         
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         isPlaying = false;
         document.body.classList.remove('party-mode');
+        document.querySelector('.cursed-container').classList.remove('game-active');
         document.querySelectorAll('.deck').forEach(d => d.classList.remove('spinning'));
         stopBtn.classList.add('hidden');
         startBtn.classList.remove('hidden');
