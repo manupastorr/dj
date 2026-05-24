@@ -574,11 +574,12 @@ footer {
 
     .deck-callout {
         position: absolute;
-        right: -8px;
-        top: 37%;
-        width: 150px;
-        font-size: clamp(1rem, 5vw, 1.6rem);
+        right: -20px;
+        top: 55%;
+        width: 120px;
+        font-size: clamp(1.1rem, 5.5vw, 1.8rem);
         text-align: left;
+        transform: rotate(0deg);
     }
 
     .deck-hitbox {
@@ -590,8 +591,9 @@ footer {
     }
 
     .arrow-diy {
-        left: 90%;
-        top: 60%;
-        font-size: clamp(3rem, 12vw, 4.2rem);
+        left: 72%;
+        top: 58%;
+        font-size: clamp(2.8rem, 11vw, 3.8rem);
+        transform: rotate(-20deg) skew(-3deg);
     }
 }
